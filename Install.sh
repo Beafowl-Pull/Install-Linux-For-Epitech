@@ -4,17 +4,20 @@ if [[ "$response" =~ ^([1])$ ]]
 then
 	sudo dnf update
 	sudo dnf upgrade
+	sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 	sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 	sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 	cd /tmp
 	wget https://github.com/Beafowl-Pull/Install-Linux-For-Epitech/raw/main/epitech-emacs.tgz
 	wget https://github.com/Beafowl-Pull/Install-Linux-For-Epitech/raw/main/install_criterion.sh
+	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	sh ./install_criterion.sh
 	sudo dnf update
 	tar zxvf epitech-emcas.tgz
 	cd epitech-emacs
 	sh ./INSTAL.sh local
-	sudo dnf install emacs nano SFML-devel CSFML-devel zsh code gnome-tweaks
+	sudo dnf install emacs nano SFML-devel CSFML-devel zsh code gnome-tweaks discord util-linux-user
+	chsh -s $(which zsh)
 elif [[ "$response" =~ ^([2])$ ]]
 then
 	apt install update && apt install upgrade
