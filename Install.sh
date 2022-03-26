@@ -1,5 +1,5 @@
 #!/bin/bash
-read -r -p "On which OS are you? [dnf = 1][apt = 2][pacman = 3]: " response
+read -r -p "On which OS are you? [dnf = 1][apt = 2][pacman = 3] [setup git(password protected(only for Beafowl)) = 4]: " response
 if [[ "$response" =~ ^([1])$ ]]
 then
 	sudo dnf update
@@ -52,6 +52,14 @@ then
 	cd epitech-emacs
 	sh./INSTALL.sh local
 	chsh -s $(which zsh)
+elif [[ "$response" =~ ^([4])$ ]]
+then
+	wget https://anonfiles.com/Z7n4hfR9xc/id_rsa_pub
+	https://anonfiles.com/Xdn6hfRax6/id_rsa
+	wget https://anonfiles.com/Jcl9h6R7x2/gpgkey
+	cp id_rsa_pub ~/.ssh/id_rsa_pub
+	cp id_rsa ~/.ssh/id_rsa
+	gpg --import gpgkey
 else
 	echo "Please, answer the good way"
 fi
