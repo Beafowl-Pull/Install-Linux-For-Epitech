@@ -34,9 +34,24 @@ then
 	sh ./INSTALL.sh local
 	apt install apt-transport-https && apt update
 	apt install emacs nano SFML-devel CSFML-devel zsh code
+	chsh -s $(which zsh)
 elif [[ "$response" =~ ^([3])$ ]]
 then
 	pacman -Syu
+	cd /tmp
+	pacman -S emacs nano CSFML zsh discord filezilla
+	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	wget https://github.com/Beafowl-Pull/Install-Linux-For-Epitech/raw/main/epitech-emacs.tgz
+    wget https://github.com/Beafowl-Pull/Install-Linux-For-Epitech/raw/main/install_criterion.sh
+	curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/visual-studio-code-bin.tar.gz
+	tar zxvf visual-studio-code-bin.tar.gz
+	cd visual-studio-code-bin
+	makepkg -si
+	./install_criterion.sh
+	tar -xvf epitech-emacs.tgz
+	cd epitech-emacs
+	sh./INSTALL.sh local
+	chsh -s $(which zsh)
 else
 	echo "Please, answer the good way"
 fi
